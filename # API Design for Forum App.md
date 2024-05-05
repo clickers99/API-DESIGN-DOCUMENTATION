@@ -267,9 +267,7 @@
   }
   ```
 
-#### Delete Reply
-
-:
+#### Delete Reply:
 
 - **Method:** DELETE
 - **Endpoint:** /api/replies/{reply_id}

@@ -57,14 +57,24 @@
 - **Response (Success):**
   ```json
   {
-    "success": true,
-    "message": "User registered successfully"
+    "status": 200,
+    "message": "User registered successfully",
+    "data": {
+      "user_id": "123",
+      "username": "example_user",
+      "email": "user@example.com",
+      "profile": {
+        "name": "John Doe",
+        "bio": "Lorem ipsum",
+        "avatar": "url/to/avatar.jpg"
+      }
+    }
   }
   ```
 - **Response (Failed):**
   ```json
   {
-    "success": false,
+    "status": 400,
     "message": "Registration failed. Please check your input data"
   }
   ```
@@ -83,15 +93,19 @@
 - **Response (Success):**
   ```json
   {
-    "success": true,
+    "status": 200,
     "message": "Login successful",
-    "token": "JWT_token"
+    "data": {
+      "user_id": "123",
+      "username": "example_user",
+      "token": "JWT_token"
+    }
   }
   ```
 - **Response (Failed):**
   ```json
   {
-    "success": false,
+    "status": 401,
     "message": "Login failed. Invalid email or password"
   }
   ```
@@ -115,14 +129,23 @@
 - **Response (Success):**
   ```json
   {
-    "success": true,
-    "message": "Profile updated successfully"
+    "status": 200,
+    "message": "Profile updated successfully",
+    "data": {
+      "user_id": "123",
+      "username": "example_user",
+      "profile": {
+        "name": "Updated Name",
+        "bio": "Updated bio",
+        "avatar": "url/to/new_avatar.jpg"
+      }
+    }
   }
   ```
 - **Response (Failed):**
   ```json
   {
-    "success": false,
+    "status": 403,
     "message": "Profile update failed. Please try again later"
   }
   ```
@@ -147,15 +170,22 @@
 - **Response (Success):**
   ```json
   {
-    "success": true,
+    "status": 200,
     "message": "Thread created successfully",
-    "thread_id": "thread_id"
+    "data": {
+      "thread_id": "thread_id",
+      "title": "Thread Title",
+      "content": "Thread content",
+      "author": "123",
+      "creation_date": "2024-05-07T12:00:00Z",
+      "last_updated_date": "2024-05-07T12:00:00Z"
+    }
   }
   ```
 - **Response (Failed):**
   ```json
   {
-    "success": false,
+    "status": 400,
     "message": "Thread creation failed. Please check your input data"
   }
   ```
@@ -171,14 +201,14 @@
 - **Response (Success):**
   ```json
   {
-    "success": true,
+    "status": 200,
     "message": "Thread saved/bookmarked successfully"
   }
   ```
 - **Response (Failed):**
   ```json
   {
-    "success": false,
+    "status": 404,
     "message": "Thread save/bookmark failed. Thread not found or already saved"
   }
   ```
@@ -191,17 +221,21 @@
   ```
   { "Authorization": "Bearer JWT_token" }
   ```
-- **Response (Success):**
-  ```json
-  {
-    "success": true,
-    "message": "Thread unsaved/unbookmarked successfully"
-  }
-  ```
+- \*\*
+
+Response (Success):\*\*
+
+```json
+{
+  "status": 200,
+  "message": "Thread unsaved/unbookmarked successfully"
+}
+```
+
 - **Response (Failed):**
   ```json
   {
-    "success": false,
+    "status": 404,
     "message": "Thread unsave/unbookmark failed. Thread not found or not saved"
   }
   ```
@@ -225,15 +259,22 @@
 - **Response (Success):**
   ```json
   {
-    "success": true,
+    "status": 200,
     "message": "Reply added successfully",
-    "reply_id": "reply_id"
+    "data": {
+      "reply_id": "reply_id",
+      "thread_id": "thread_id",
+      "content": "Reply content",
+      "author": "123",
+      "creation_date": "2024-05-07T12:00:00Z",
+      "last_updated_date": "2024-05-07T12:00:00Z"
+    }
   }
   ```
 - **Response (Failed):**
   ```json
   {
-    "success": false,
+    "status": 400,
     "message": "Reply addition failed. Please try again later"
   }
   ```
@@ -255,14 +296,14 @@
 - **Response (Success):**
   ```json
   {
-    "success": true,
+    "status": 200,
     "message": "Reply updated successfully"
   }
   ```
 - **Response (Failed):**
   ```json
   {
-    "success": false,
+    "status": 404,
     "message": "Reply update failed. Please try again later"
   }
   ```
@@ -278,14 +319,14 @@
 - **Response (Success):**
   ```json
   {
-    "success": true,
+    "status": 200,
     "message": "Reply deleted successfully"
   }
   ```
 - **Response (Failed):**
   ```json
   {
-    "success": false,
+    "status": 404,
     "message": "Reply deletion failed. Please try again later"
   }
   ```

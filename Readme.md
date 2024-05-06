@@ -49,7 +49,7 @@
 #### Register User:
 
 - **Method:** POST
-- **Endpoint:** /api/users/register
+- **Endpoint:** /auth/users/
 - **Request Body:**
   ```json
   {

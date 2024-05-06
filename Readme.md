@@ -112,7 +112,7 @@
 
 #### Update User Profile:
 
-- **Method:** PUT
+- **Method:** PATCH
 - **Endpoint:** /api/users/profile
 - **Request Body:**
   ```json

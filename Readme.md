@@ -281,7 +281,7 @@ Response (Success):\*\*
 
 #### Update Reply:
 
-- **Method:** PUT
+- **Method:** PATCH
 - **Endpoint:** /api/replies/{reply_id}
 - **Request Body:**
   ```json

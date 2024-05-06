@@ -14,30 +14,33 @@
 1. **User:**
 
    - **Attributes:**
-     - ID (unique identifier)
-     - Username
-     - Email
-     - Password (encrypted)
-     - Profile Information (e.g., name, bio, avatar, etc.)
+     - ID (unique identifier): String,required
+     - Username : String,required
+     - Email : String,required
+     - Password (encrypted) : String,required
+     - Profile Information :
+         - Name: String (opsional)
+         - Bio: String (opsional)
+         - Avatar: String (opsional, URL atau path ke file gambar)
 
 2. **Thread:**
 
    - **Attributes:**
-     - ID (unique identifier)
-     - Title
-     - Content
-     - Author (User ID)
-     - Creation Date
-     - Last Updated Date
+     - ID (unique identifier) : String,required
+     - Title : String,required
+     - Content : String,required
+     - Author (User ID) : String,required
+     - Creation Date : DateTime,required
+     - Last Updated Date : DateTime,required
 
 3. **Reply:**
    - **Attributes:**
-     - ID (unique identifier)
-     - Thread ID (parent thread)
-     - Content
-     - Author (User ID)
-     - Creation Date
-     - Last Updated Date
+     - ID (unique identifier) : String,required
+     - Thread ID (parent thread) : String,required
+     - Content : String,required
+     - Author (User ID) : String,required
+     - Creation Date : DateTime,required
+     - Last Updated Date : DateTime,required
 
 ## API Endpoints:
 
@@ -130,10 +133,6 @@
     "avatar": "url/to/new_avatar.jpg"
   }
   ```
-- **Headers:**
-  ```
-  { "Authorization": "Bearer JWT_token" }
-  ```
 - **Response (Success):**
   ```json
   {
@@ -171,10 +170,6 @@
     "content": "Thread content"
   }
   ```
-- **Headers:**
-  ```
-  { "Authorization": "Bearer JWT_token" }
-  ```
 - **Response (Success):**
   ```json
   {
@@ -202,10 +197,6 @@
 
 - **Method:** POST
 - **Endpoint:** /api/threads/{thread_id}/save
-- **Headers:**
-  ```
-  { "Authorization": "Bearer JWT_token" }
-  ```
 - **Response (Success):**
   ```json
   {
@@ -225,11 +216,6 @@
 
 - **Method:** DELETE
 - **Endpoint:** /api/threads/{thread_id}/save
-- **Headers:**
-  ```
-  { "Authorization": "Bearer JWT_token" }
-  ```
-- \*\*
 
 Response (Success):\*\*
 
@@ -259,10 +245,6 @@ Response (Success):\*\*
   {
     "content": "Reply content"
   }
-  ```
-- **Headers:**
-  ```
-  { "Authorization": "Bearer JWT_token" }
   ```
 - **Response (Success):**
   ```json
@@ -297,10 +279,6 @@ Response (Success):\*\*
     "content": "Updated reply content"
   }
   ```
-- **Headers:**
-  ```
-  { "Authorization": "Bearer JWT_token" }
-  ```
 - **Response (Success):**
   ```json
   {
@@ -320,10 +298,6 @@ Response (Success):\*\*
 
 - **Method:** DELETE
 - **Endpoint:** /api/replies/{reply_id}
-- **Headers:**
-  ```
-  { "Authorization": "Bearer JWT_token" }
-  ```
 - **Response (Success):**
   ```json
   {

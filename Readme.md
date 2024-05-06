@@ -109,7 +109,6 @@
     "data": {
       "user_id": "123",
       "username": "example_user",
-      "token": "JWT_token"
     }
   }
   ```

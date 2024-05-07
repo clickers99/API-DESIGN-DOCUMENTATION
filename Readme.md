@@ -1,4 +1,4 @@
-````markdown
+
 # API Design for Forum App
 - **Requirement/User Stories:**
    - As a user, I want to be able to Register
@@ -14,10 +14,9 @@
 1. **User:**
 
    - **Attributes:**
-     - ID (unique identifier): String,required
      - Username : String,required
      - Email : String,required
-     - Password (encrypted) : String,required
+     - Password : String,required
      - Profile Information :
          - Name: String (opsional)
          - Bio: String (opsional)
@@ -26,21 +25,26 @@
 2. **Thread:**
 
    - **Attributes:**
-     - ID (unique identifier) : String,required
      - Title : String,required
      - Content : String,required
-     - Author (User ID) : String,required
-     - Creation Date : DateTime,required
-     - Last Updated Date : DateTime,required
+     - UserId : String,required
+     - Creation Date (created_at) : DateTime,required
+     - Last Updated Date (updated_at) : DateTime,required
 
 3. **Reply:**
    - **Attributes:**
-     - ID (unique identifier) : String,required
      - Thread ID (parent thread) : String,required
      - Content : String,required
-     - Author (User ID) : String,required
-     - Creation Date : DateTime,required
-     - Last Updated Date : DateTime,required
+     - UserId : String,required
+     - Creation Date (created_at) : DateTime,required
+     - Last Updated Date (updated_at) : DateTime,required
+
+4. **Bookmark:**
+
+   - **Attributes:**
+     - UserID: String (required)
+     - ThreadID: String (required)
+     - Creation Date (created_at): DateTime (required)
 
 ## API Endpoints:
 
@@ -49,7 +53,7 @@
 #### Register User:
 
 - **Method:** POST
-- **Endpoint:** /auth/users/
+- **Endpoint:** /api/register
 - **Request Body:**
   ```json
   {
@@ -63,7 +67,6 @@
     }
   }
   ```
-````
 
 - **Response (Success):**
   ```json
@@ -93,7 +96,7 @@
 #### Log In User:
 
 - **Method:** POST
-- **Endpoint:** /api/users/login
+- **Endpoint:** /api/login
 - **Request Body:**
   ```json
   {
@@ -123,7 +126,7 @@
 #### Update User Profile:
 
 - **Method:** PATCH
-- **Endpoint:** /api/users/profile
+- **Endpoint:** /api/users/:userId
 - **Request Body:**
   ```json
   {
@@ -165,6 +168,7 @@
 - **Request Body:**
   ```json
   {
+    "user_id": "User"
     "title": "Thread Title",
     "content": "Thread content"
   }
@@ -178,7 +182,7 @@
       "thread_id": "thread_id",
       "title": "Thread Title",
       "content": "Thread content",
-      "author": "123",
+      "user_id": "123",
       "creation_date": "2024-05-07T12:00:00Z",
       "last_updated_date": "2024-05-07T12:00:00Z"
     }
@@ -195,7 +199,15 @@
 #### Save/Bookmark Thread:
 
 - **Method:** POST
-- **Endpoint:** /api/threads/{thread_id}/save
+- **Endpoint:** /api/bookmarks
+
+- **Request Body:**
+  ```json
+  {
+    "user_id": "User",
+    "thread_id": "thread_id"
+  }
+  ```
 - **Response (Success):**
   ```json
   {
@@ -214,7 +226,7 @@
 #### Unsave/Unbookmark Thread:
 
 - **Method:** DELETE
-- **Endpoint:** /api/threads/{thread_id}/save
+- **Endpoint:** /api/bookmarks/:bookmarkId
 
 Response (Success):\*\*
 
@@ -235,13 +247,16 @@ Response (Success):\*\*
 
 ### Reply Management:
 
-#### Create New Reply:
+#### Create New Reply Thread:
 
 - **Method:** POST
-- **Endpoint:** /api/threads/{thread_id}/replies
+- **Endpoint:** /api/replies
 - **Request Body:**
   ```json
   {
+    "user_id" : "User"
+    "author_id" : "Author"
+    "thread_id" "Thread Id"
     "content": "Reply content"
   }
   ```
@@ -251,10 +266,11 @@ Response (Success):\*\*
     "status": 200,
     "message": "Reply added successfully",
     "data": {
-      "reply_id": "reply_id",
-      "thread_id": "thread_id",
+      "user_id" : "john"
+      "reply_id": "Nice",
+      "thread_id": "Devscale Bootcamp,
       "content": "Reply content",
-      "author": "123",
+      "author_id": "arthur",
       "creation_date": "2024-05-07T12:00:00Z",
       "last_updated_date": "2024-05-07T12:00:00Z"
     }
@@ -265,49 +281,5 @@ Response (Success):\*\*
   {
     "status": 400,
     "message": "Reply addition failed. Please try again later"
-  }
-  ```
-
-#### Update Reply:
-
-- **Method:** PATCH
-- **Endpoint:** /api/replies/{reply_id}
-- **Request Body:**
-  ```json
-  {
-    "content": "Updated reply content"
-  }
-  ```
-- **Response (Success):**
-  ```json
-  {
-    "status": 200,
-    "message": "Reply updated successfully"
-  }
-  ```
-- **Response (Failed):**
-  ```json
-  {
-    "status": 404,
-    "message": "Reply update failed. Please try again later"
-  }
-  ```
-
-#### Delete Reply:
-
-- **Method:** DELETE
-- **Endpoint:** /api/replies/{reply_id}
-- **Response (Success):**
-  ```json
-  {
-    "status": 200,
-    "message": "Reply deleted successfully"
-  }
-  ```
-- **Response (Failed):**
-  ```json
-  {
-    "status": 404,
-    "message": "Reply deletion failed. Please try again later"
   }
   ```

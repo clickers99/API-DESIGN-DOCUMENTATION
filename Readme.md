@@ -256,7 +256,7 @@ Response (Success):\*\*
   {
     "user_id" : "User"
     "author_id" : "Author"
-    "thread_id" "Thread Id"
+    "thread_id" : "Thread Id"
     "content": "Reply content"
   }
   ```

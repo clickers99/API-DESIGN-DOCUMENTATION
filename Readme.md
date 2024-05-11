@@ -268,7 +268,7 @@ Response (Success):\*\*
     "data": {
       "user_id" : "john"
       "reply_id": "Nice",
-      "thread_id": "Devscale Bootcamp,
+      "thread_id": "Devscale Bootcamp",
       "content": "Reply content",
       "author_id": "arthur",
       "creation_date": "2024-05-07T12:00:00Z",
